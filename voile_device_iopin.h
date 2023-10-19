@@ -2,12 +2,13 @@
  * @file voile_device_iopin.h
  * @author JimmyWang
  * @brief Define functions for device IOpin in voile library
- * @version	V0.0.0
- * @date 20231018
+ * @version	V0.0.1
+ * @date 20231019
  * @par History
  * Version|Auther|Date|Describe
  * ------|----|------|-------- 
- * V0.0.0|JimmyWang|20231018|First update.
+ * V0.0.1|JimmyWang|20231019|Add io mode input pull up or down
+ * V0.0.0|JimmyWang|20231018|First update
  * @defgroup IOpin
  * 
  */
@@ -47,9 +48,11 @@ enum voileFunctionReturn{
  */
 enum voileIOmode{
     IOmodeInput = 0,
-    IOmodeQuasiBidirectional = 1,
-    IOmodePushPull = 2,
-    IOmodeOpenDrain = 3,
+    IOmodeInputWithPullUpResistor = 1,
+    IOmodeInputWithPullDownResistor = 2,
+    IOmodeQuasiBidirectional = 3,
+    IOmodePushPull = 4,
+    IOmodeOpenDrain = 5,
 };
 
 #endif // !__voile_io_enum
@@ -71,15 +74,12 @@ enum voileIOmode{
  * @endcode
  * 
  * @details 
- * If your hardward unsupport the mode you slect, function will use equivalent mode. \n 
- * If equivalent mode unsupport, function will return hardware-unsupported-error and downgrade to most similar mode. \n
+ * If your hardward unsupport the mode you slect, function will return hardware-unsupported-error and downgrade to most similar mode. \n
  * For details: \n 
- * Input mode equivalent mode: open-drain and output high, quasi-bidirectional and output high. \n 
- * Quasi-bidirectional equivalent mode: open-drain wtih pullup resistor. \n 
- * Downgrade: open-drain without resistor, input when output high and push-pull when output low, push-pull. \n
- * Open-drain equivalent mode: input when output high and push-pull when output low. \n
- * Downgrade: quasi-bidirectional, push-pull. \n 
- * Push-pull downgrade: quasi-bidirectional, open-drain wtih pullup resistor, open-drain wtihout pullup resistor.
+ * Input mode with pull up or down resistor will downgrade to input with nothing. \n 
+ * Quasi-bidirectional mode: will downgrade to open-drain then push-pull. \n
+ * Open-drain mode will downgrade to quasi-bidirectional then push-pull. \n 
+ * Push-pull mode will downgrade to quasi-bidirectional then open-drain.
  * 
  */
 #define IOpin_Init(device, mode, value) COMBINE3(__, device, _Init)(device##_, mode, value)
