@@ -2,12 +2,12 @@
  * @file voile_device_iopin.h
  * @author JimmyWang
  * @brief Define functions for device IOpin in voile library
- * @version	V0.0.1
+ * @version	V0.0.2.1
  * @date 20231019
  * @par History
  * Version|Auther|Date|Describe
  * ------|----|------|--------
- * v0.0.2|JimmyWang|20231020|[backward incompatible]Chang rule of macro function
+ * V0.0.2|JimmyWang|20231020|[backward incompatible]Chang rule of macro function
  * V0.0.1|JimmyWang|20231019|Add io mode input pull up or down
  * V0.0.0|JimmyWang|20231018|First update.
  * @defgroup IOpin
@@ -98,7 +98,7 @@ enum voileIOmode{
  *
  * @par Sample
  * @code
- * IOpin_Write(myIO, IO_RESET);
+ * IOpin_Write(myIO, 1);
  * @endcode
  *  
  */
