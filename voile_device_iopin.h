@@ -6,9 +6,10 @@
  * @date 20231019
  * @par History
  * Version|Auther|Date|Describe
- * ------|----|------|-------- 
+ * ------|----|------|--------
+ * v0.0.2|JimmyWang|20231020|[backward incompatible]Chang rule of macro function
  * V0.0.1|JimmyWang|20231019|Add io mode input pull up or down
- * V0.0.0|JimmyWang|20231018|First update
+ * V0.0.0|JimmyWang|20231018|First update.
  * @defgroup IOpin
  * 
  */
@@ -18,7 +19,8 @@
 #include "voile_devicelist.h"
 #include <stdint.h>
 
-#define COMBINE3(a, b, c) a##b##c
+#define COMBINE3(a, b, c) __COMBINE3(a, b, c)
+#define __COMBINE3(a, b, c) a##b##c
 
 #ifndef __voile_return
 #define __voile_return
@@ -76,13 +78,13 @@ enum voileIOmode{
  * @details 
  * If your hardward unsupport the mode you slect, function will return hardware-unsupported-error and downgrade to most similar mode. \n
  * For details: \n 
- * Input mode with pull up or down resistor will downgrade to input with nothing. \n 
- * Quasi-bidirectional mode: will downgrade to open-drain then push-pull. \n
- * Open-drain mode will downgrade to quasi-bidirectional then push-pull. \n 
- * Push-pull mode will downgrade to quasi-bidirectional then open-drain.
+ * The input mode with pull up or down resistor will downgrade to input with nothing. \n 
+ * The quasi-bidirectional mode: will downgrade to open-drain then push-pull. \n
+ * The open-drain mode will downgrade to quasi-bidirectional then push-pull. \n 
+ * The push-pull mode will downgrade to quasi-bidirectional then open-drain.
  * 
  */
-#define IOpin_Init(device, mode, value) COMBINE3(__, device, _Init)(device##_, mode, value)
+#define IOpin_Init(device, mode, value) COMBINE3(__IOpin_, device##_lib, _Init)(device##_, mode, value)
 
 
 /**
@@ -100,7 +102,7 @@ enum voileIOmode{
  * @endcode
  *  
  */
-#define IOpin_Write(device, value)  COMBINE3(__, device, _Write)(device##_, value)
+#define IOpin_Write(device, value)  COMBINE3(__IOpin_, device##_lib, _Write)(device##_, value)
 
 
 /**
@@ -118,7 +120,7 @@ enum voileIOmode{
  * @endcode
  *  
  */
-#define IOpin_Read(device, value)  COMBINE3(__, device, _Read)(device##_, value)
+#define IOpin_Read(device, value)  COMBINE3(__IOpin_, device##_lib, _Read)(device##_, value)
 
 
 /**
@@ -135,7 +137,7 @@ enum voileIOmode{
  * @endcode
  *  
  */
-#define IOpin_ReadToReturn(device)  COMBINE3(__, device, _ReadToReturn)(device##_)
+#define IOpin_ReadToReturn(device)  COMBINE3(__IOpin_, device##_lib, _ReadToReturn)(device##_)
 
 
 #endif // !__VOILE_DEVICE_IO_H__
