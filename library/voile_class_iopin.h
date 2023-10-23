@@ -43,7 +43,7 @@ typedef const uint8_t voile_ioPin_pin_t;
 
 
 /**
- * @brief functions of ioPin
+ * @brief Functions of ioPin
  * 
  */
 struct voile_ioPin_Func_t
