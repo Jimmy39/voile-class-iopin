@@ -1,4 +1,4 @@
-# voile-device-iopin
+# voile-class-iopin
 Define class ioPin for any single io
 
 IOpin can be uesd for GPIO, IO expansion chip and even 74595 or 74164.
