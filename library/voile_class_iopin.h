@@ -2,15 +2,6 @@
  * @file voile_class_iopin.h
  * @author JimmyWang
  * @brief Define class ioPin for any single io
- * @version	V0.0.3
- * @date 20231023
- * @par History
- * Version|Auther|Date|Describe
- * ------|----|------|--------
- * V0.0.3|JimmyWang|20231023|[backward incompatible]Use struct instead micro.Add toggle function.
- * V0.0.2|JimmyWang|20231020|[backward incompatible]Chang rule of macro function
- * V0.0.1|JimmyWang|20231019|Add io mode input pull up or down
- * V0.0.0|JimmyWang|20231018|First update.
  * 
  */
 #ifndef __VOILE_CLASS_IO_H__
@@ -43,11 +34,10 @@ typedef const uint8_t voile_ioPin_pin_t;
 
 
 /**
- * @brief Functions of ioPin
+ * @brief Operations of ioPin
  * 
  */
-struct voile_ioPin_Func_t
-{
+struct voile_ioPinOperations_t{
 
     /**
      * @brief Initialise or reinitialise a IO, set io mode and default output value
@@ -73,7 +63,7 @@ struct voile_ioPin_Func_t
      * 
      * 
      */
-    enum voileFunctionReturn const (*Init)(void *, enum voileIOmode, ...);
+    enum voileFunctionReturn (*Init)(void *, enum voileIOmode, ...);
     
     /**
      * @brief Drive a single io high/low
@@ -88,7 +78,7 @@ struct voile_ioPin_Func_t
      * @endcode
      *  
      */
-    enum voileFunctionReturn const (*Write)(void *, bool);
+    enum voileFunctionReturn (*Write)(void *, bool);
 
     /**
      * @brief Get state of a single io
@@ -104,7 +94,7 @@ struct voile_ioPin_Func_t
      * @endcode
      *  
      */
-    enum voileFunctionReturn const (*Read)(void *, bool *);
+    enum voileFunctionReturn (*Read)(void *, bool *);
 
     /**
      * @brief Get state of a single io
@@ -118,7 +108,7 @@ struct voile_ioPin_Func_t
      * @endcode
      *  
      */
-    bool const (*ReadToReturn)(void *);
+    bool (*ReadToReturn)(void *);
     
     /**
      * @brief Toggle a single io
@@ -132,7 +122,7 @@ struct voile_ioPin_Func_t
      * @endcode
      *  
      */
-    enum voileFunctionReturn const (*Toggle)(void *);
+    enum voileFunctionReturn (*Toggle)(void *);
 };
 
 
@@ -140,10 +130,8 @@ struct voile_ioPin_Func_t
  * @brief Single io
  * 
  */
-struct voile_ioPin
-{
-    voile_ioPin_pin_t pin;                  ///< to identify pins
-    const struct voile_ioPin_Func_t *Func;  ///< functions of ioPin
+struct voile_ioPin_t{
+    const struct voile_ioPinOperations_t *Operations;   ///< Operations of ioPin
 };
 
 
