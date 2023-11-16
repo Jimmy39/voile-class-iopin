@@ -1,14 +1,14 @@
-# voile-class-iopin
-Define class ioPin for any single io
+# voile-internal-iopin
+Define class ioPin in voile library for any single io
 
 ```C
 /**
  * @brief Single io
  * 
  */
-struct voile_ioPin_t{
-    const struct voile_ioPinOperations_t *Operations;   ///< Operations of ioPin
-};
+typedef const{
+    voile_ioPinOperations_t *Operations;   ///< Operations for ioPin
+} voile_ioPin_t;
 ```
 
 IOpin can be uesd for GPIO, IO expansion chip and even 74595 or 74164.
