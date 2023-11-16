@@ -1,4 +1,4 @@
-# voile-internal-iopin
+# voile-interface-iopin
 Define class ioPin in voile library for any single io
 
 ```C
