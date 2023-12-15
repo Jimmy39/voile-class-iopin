@@ -38,7 +38,7 @@ typedef const struct {
      * @brief Initialise or reinitialise a IO, set io mode and default output value
      * 
      * @param[in] this :[voile_const_ioPin_t *]This ioPin object.
-     * @param[in] mode :[voileIOmode_t]Which mode select to use @ref voileIOmode_t
+     * @param[in] mode :[voile_io_mode_t]Which mode select to use @ref voile_io_mode_t.
      * @param[in] value :[bool](option when input mode)If 0 clear the IO, 1 set it. Input mode will ignore this param.
      * @return [voile_status_t]The status of function.
      *
@@ -57,7 +57,7 @@ typedef const struct {
      * - The push-pull mode will downgrade to quasi-bidirectional then open-drain. \n 
      * 
      */
-    voile_status_t (*Init)(void *, enum voileIOmode, ...);
+    voile_status_t (*Init)(const void *, voile_io_mode_t, ...);
     
     /**
      * @brief Drive a single io high/low
@@ -72,7 +72,7 @@ typedef const struct {
      * @endcode
      *  
      */
-    voile_status_t (*Write)(void *, bool);
+    voile_status_t (*Write)(const void *, bool);
 
     /**
      * @brief Get state of a single io
@@ -88,7 +88,7 @@ typedef const struct {
      * @endcode
      *  
      */
-    voile_status_t (*Read)(void *, bool *);
+    voile_status_t (*Read)(const void *, bool *);
     
     /**
      * @brief Toggle a single io
@@ -102,7 +102,7 @@ typedef const struct {
      * @endcode
      *  
      */
-    voile_status_t (*Toggle)(void *);
+    voile_status_t (*Toggle)(const void *);
 
 } voile_const_ioPin_Operate_t;
 
@@ -125,7 +125,7 @@ typedef struct {
      * @endcode
      *  
      */
-    bool (*Read)(void *);
+    bool (*Read)(const void *);
 
 } voile_const_ioPin_Get_t;
 
