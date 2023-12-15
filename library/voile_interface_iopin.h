@@ -24,7 +24,7 @@ typedef enum {
     IOmodeQuasiBidirectional = 3,
     IOmodePushPull = 4,
     IOmodeOpenDrain = 5,
-} voileIOmode_t;
+} voile_io_mode_t;
 
 #endif // !__voile_io_enum
 
@@ -37,9 +37,9 @@ typedef const struct {
     /**
      * @brief Initialise or reinitialise a IO, set io mode and default output value
      * 
-     * @param[in] name :[voile_const_ioPin_t *]This ioPin object.
+     * @param[in] this :[voile_const_ioPin_t *]This ioPin object.
      * @param[in] mode :[voileIOmode_t]Which mode select to use @ref voileIOmode_t
-     * @param[in] value :(option)[bool]If 0 clear the IO, 1 set it. Input mode will ignore this param.
+     * @param[in] value :[bool](option when input mode)If 0 clear the IO, 1 set it. Input mode will ignore this param.
      * @return [voile_status_t]The status of function.
      *
      * @par Sample
@@ -62,7 +62,7 @@ typedef const struct {
     /**
      * @brief Drive a single io high/low
      * 
-     * @param[in] name :[voile_const_ioPin_t *]This ioPin object.
+     * @param[in] this :[voile_const_ioPin_t *]This ioPin object.
      * @param[in] value :[bool]If 0 clear the IO, 1 set it.
      * @return [voile_status_t]The status of function.
      *
@@ -77,7 +77,7 @@ typedef const struct {
     /**
      * @brief Get state of a single io
      * 
-     * @param[in] name :[voile_const_ioPin_t *]This ioPin object.
+     * @param[in] this :[voile_const_ioPin_t *]This ioPin object.
      * @param[out] value :[bool *]Current state of the GPIO. 0 for low, 1 for high.
      * @return [voile_status_t]The status of function.
      *
@@ -93,7 +93,7 @@ typedef const struct {
     /**
      * @brief Toggle a single io
      * 
-     * @param[in] name :[voile_const_ioPin_t *]This ioPin object.
+     * @param[in] this :[voile_const_ioPin_t *]This ioPin object.
      * @return [voile_status_t]The status of function.
      *
      * @par Sample
@@ -116,7 +116,7 @@ typedef struct {
     /**
      * @brief Get state of a single io
      * 
-     * @param[in] name :[voile_const_ioPin_t *]This ioPin object.
+     * @param[in] this :[voile_const_ioPin_t *]This ioPin object.
      * @return [bool]Current state of the GPIO. 0 for low, 1 for high.
      *
      * @par Sample
