@@ -75,10 +75,10 @@ typedef const struct {
     voile_status_t (*Write)(const void *, bool);
 
     /**
-     * @brief Get state of a single io
+     * @brief Get state of a single io input
      * 
      * @param[in] this :[voile_const_ioPin_t *]This ioPin object.
-     * @param[out] value :[bool *]Current state of the GPIO. 0 for low, 1 for high.
+     * @param[out] value :[bool *]Current state of the GPIO input. 0 for low, 1 for high.
      * @return [voile_status_t]The status of function.
      *
      * @par Sample
@@ -104,6 +104,22 @@ typedef const struct {
      */
     voile_status_t (*Toggle)(const void *);
 
+    /**
+     * @brief Get state of a single io output
+     * 
+     * @param[in] this :[voile_const_ioPin_t *]This ioPin object.
+     * @param[out] value :[bool *]Current state of the GPIO output. 0 for low, 1 for high.
+     * @return [voile_status_t]The status of function.
+     *
+     * @par Sample
+     * @code {.C}
+     * bool i;
+     * myIo.Operate->ReadRegister(&myIo, &i);
+     * @endcode
+     *  
+     */
+    voile_status_t (*ReadRegister)(const void *, bool *);
+
 } voile_const_ioPin_Operate_t;
 
 
@@ -114,18 +130,33 @@ typedef const struct {
 typedef struct {
 
     /**
-     * @brief Get state of a single io
+     * @brief Get state of a single io input
      * 
      * @param[in] this :[voile_const_ioPin_t *]This ioPin object.
-     * @return [bool]Current state of the GPIO. 0 for low, 1 for high.
+     * @return [bool]Current state of the GPIO input. 0 for low, 1 for high.
      *
      * @par Sample
      * @code {.C}
-     * myIo.Get->Read(&myIo);
+     * bool i = myIo.Get->Read(&myIo);
      * @endcode
      *  
      */
     bool (*Read)(const void *);
+
+    /**
+     * @brief Get state of a single io output
+     * 
+     * @param[in] this :[voile_const_ioPin_t *]This ioPin object.
+     * @param[out] value :[bool *]Current state of the GPIO output. 0 for low, 1 for high.
+     * @return [voile_status_t]The status of function.
+     *
+     * @par Sample
+     * @code {.C}
+     * bool i = myIo.Get->ReadRegister(&myIo);
+     * @endcode
+     *  
+     */
+    voile_status_t (*ReadRegister)(const void *);
 
 } voile_const_ioPin_Get_t;
 
