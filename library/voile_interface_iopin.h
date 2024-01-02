@@ -156,7 +156,7 @@ typedef struct {
      * @endcode
      *  
      */
-    voile_status_t (*ReadRegister)(const void *);
+    bool (*ReadRegister)(const void *);
 
 } voile_const_ioPin_Get_t;
 
