@@ -130,6 +130,20 @@ typedef const struct {
 typedef struct {
 
     /**
+     * @brief Get state of a single io init
+     * 
+     * @param[in] this :[voile_const_ioPin_t *]This ioPin object.
+     * @return [bool]Current state of the IO init. 0 for not init, 1 for init.
+     *
+     * @par Sample
+     * @code {.C}
+     * bool i = myIo.Get->IfInit(&myIo);
+     * @endcode
+     *  
+     */
+    bool (*IfInit)(const void *);
+
+    /**
      * @brief Get state of a single io input
      * 
      * @param[in] this :[voile_const_ioPin_t *]This ioPin object.
