@@ -68,8 +68,8 @@ struct voile_ioPin_Operate_struct {
      * @endcode
      * 
      * @note 
-     * You should set mode and write value for output befor init. \n
-     * In some hardware that does not support atomic operations, this function may initialize and enable the entire port.
+     * - You should set mode and write value for output befor init. \n
+     * - In some hardware that does not support atomic operations, this function may initialize and enable the entire port.
      * 
      */
     voile_status_t (*Init)(voile_const_ioPin_t *);
@@ -83,7 +83,7 @@ struct voile_ioPin_Operate_struct {
      *
      * @par Sample
      * @code {.C}
-     * myIo.Operate->Init(&myIo, IOmodePushPull);
+     * myIo.Operate->SetMode(&myIo, IOmodePushPull);
      * @endcode
      * 
      * @details 
