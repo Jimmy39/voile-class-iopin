@@ -8,7 +8,7 @@
   @depends
   [voile-common](https://github.com/Jimmy39/voile-common)
   @author Jimmy Wang
-  @version alpha-240227
+  @version alpha-240228
   @todo Edit comment and add sample
 
   @license MIT License
@@ -136,7 +136,7 @@ struct voile_pin_interface_struct {
  *
  *
  */
-static inline void pin_init(voile_const_pin_t *pin_p) {
+static inline void Vpin_init(voile_const_pin_t *pin_p) {
     (*pin_p)->init(pin_p);
 }
 
@@ -164,7 +164,7 @@ static inline void pin_init(voile_const_pin_t *pin_p) {
  * \n
  *
  */
-static inline voile_io_mode_t pin_setMode(
+static inline voile_io_mode_t Vpin_setMode(
     voile_const_pin_t *pin_p, voile_io_mode_t mode) {
 
     return ((*pin_p)->setMode(pin_p, mode));
@@ -178,7 +178,7 @@ static inline voile_io_mode_t pin_setMode(
    *
    *
    */
-static inline void pin_write(voile_const_pin_t *pin_p, bool value) {
+static inline void Vpin_write(voile_const_pin_t *pin_p, bool value) {
     (*pin_p)->write(pin_p, value);
 }
 
@@ -190,7 +190,7 @@ static inline void pin_write(voile_const_pin_t *pin_p, bool value) {
 
    *
    */
-static inline bool pin_read(voile_const_pin_t *pin_p) {
+static inline bool Vpin_read(voile_const_pin_t *pin_p) {
     return ((*pin_p)->read(pin_p));
 }
 
@@ -201,7 +201,7 @@ static inline bool pin_read(voile_const_pin_t *pin_p) {
 
    *
    */
-static inline void pin_toggle(voile_const_pin_t *pin_p) {
+static inline void Vpin_toggle(voile_const_pin_t *pin_p) {
     (*pin_p)->toggle(pin_p);
 }
 
@@ -214,7 +214,7 @@ static inline void pin_toggle(voile_const_pin_t *pin_p) {
 
    *
    */
-static inline bool pin_readRegister(voile_const_pin_t *pin_p) {
+static inline bool Vpin_readRegister(voile_const_pin_t *pin_p) {
     return ((*pin_p)->readRegister(pin_p));
 }
 
@@ -225,7 +225,7 @@ static inline bool pin_readRegister(voile_const_pin_t *pin_p) {
    * @return [voile_io_mode_t] The mode of the single io.
 
    */
-static inline voile_io_mode_t pin_getMode(voile_const_pin_t *pin_p) {
+static inline voile_io_mode_t Vpin_getMode(voile_const_pin_t *pin_p) {
     return ((*pin_p)->setMode(pin_p, IOmodeHold));
 }
 
